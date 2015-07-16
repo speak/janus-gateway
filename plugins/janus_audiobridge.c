@@ -615,7 +615,7 @@ void *janus_audiobridge_watchdog(void *data) {
 					sl = sl->next;
 					continue;
 				}
-				if(now-session->destroyed >= 5*G_USEC_PER_SEC) {
+				if(now-session->destroyed >= 50*G_USEC_PER_SEC) {
 					/* We're lazy and actually get rid of the stuff only after a few seconds */
 					JANUS_LOG(LOG_VERB, "Freeing old AudioBridge session\n");
 					GList *rm = sl->next;
