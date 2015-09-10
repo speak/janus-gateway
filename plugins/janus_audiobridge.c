@@ -1547,10 +1547,10 @@ void janus_audiobridge_incoming_rtp(janus_plugin_session *handle, int video, cha
 			}
 		} else {
 			/* Make sure we're not queueing too many packets: if so, get rid of the older ones */
-			if(g_list_length(participant->inbuf) >= DEFAULT_PREBUFFERING*2) {
+			if(g_list_length(participant->inbuf) >= DEFAULT_PREBUFFERING*3) {
 				JANUS_LOG(LOG_WARN, "Too many packets in queue (%d > %d), removing older ones\n",
-					g_list_length(participant->inbuf), DEFAULT_PREBUFFERING*2);
-				while(g_list_length(participant->inbuf) > DEFAULT_PREBUFFERING*2) {
+					g_list_length(participant->inbuf), DEFAULT_PREBUFFERING*3);
+				while(g_list_length(participant->inbuf) > DEFAULT_PREBUFFERING*3) {
 					/* Remove this packet: it's too old */
 					GList *first = g_list_first(participant->inbuf);
 					janus_audiobridge_rtp_relay_packet *pkt = (janus_audiobridge_rtp_relay_packet *)first->data;
